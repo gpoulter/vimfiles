@@ -37,18 +37,9 @@
 [submodule "bundle/vim-preview"]
 	path = bundle/vim-preview
 	url = https://github.com/greyblake/vim-preview.git
-[submodule "bundle/zencoding-vim"]
-	path = bundle/zencoding-vim
-	url = http://github.com/mattn/zencoding-vim.git
 [submodule "bundle/vim-less"]
 	path = bundle/vim-less
 	url = http://github.com/groenewege/vim-less.git
-[submodule "bundle/vim-jade"]
-	path = bundle/vim-jade
-	url = http://github.com/digitaltoad/vim-jade.git
 [submodule "bundle/SimpylFold"]
 	path = bundle/SimpylFold
 	url = http://github.com/tmhedberg/SimpylFold.git
-[submodule "bundle/nginx-vim-syntax"]
-	path = bundle/nginx-vim-syntax
-	url = https://github.com/andersjanmyr/nginx-vim-syntax
