@@ -29,6 +29,7 @@ inoremap <Up> <C-o>g<Up>
 
 " Map return to break line after character
 nnoremap <CR> a<CR><Esc>
+nnoremap <S-CR> i<CR><Esc>
 
 " Map key to toggle search highlighting
 nmap <silent> <leader>h :silent :set hlsearch!<CR>
@@ -56,10 +57,13 @@ nnoremap <Leader>d :NERDTreeToggle<CR>
 nnoremap <leader>x :BufExplorer<cr>
 
 " Map key to do CommandT TextMate-style finder
-nnoremap <leader>t :CommandT<CR>
+nnoremap <leader>t :setlocal langmap=<CR>:CommandT<CR>
 
 " Map key to do CommandT buffer finder
-nnoremap <leader>f :CommandTBuffer<CR>
+nnoremap <leader>f :setlocal langmap=<CR>:CommandTBuffer<CR>
+
+" Map key to trim trailing whitespace
+nnoremap <leader>z :%s/\s\+$//e
 
 " Map key to use Gundo
 nnoremap <F4> :GundoToggle<CR>
@@ -78,10 +82,10 @@ function! NumberToggle()
   endif
 endfunc
 nnoremap <Leader>n :call NumberToggle()<CR>
-autocmd FocusLost * :set number
-autocmd FocusGained * :set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+"autocmd FocusLost * :set number
+"autocmd FocusGained * :set relativenumber
+"autocmd InsertEnter * :set number
+"autocmd InsertLeave * :set relativenumber
 
 " Map keys for quick window navigation
 map <C-h> <C-w>h
@@ -116,7 +120,7 @@ nmap SR <ESC>:source ~/.vim/session.vim<CR>
 nnoremap <leader>w :silent !google-chrome <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
 
 " Go to defn of tag under the cursor, forcing noignorecase
-fun! MatchCaseTag()
+function! MatchCaseTag()
     let ignorecase = &ignorecase
     set noignorecase
     try
@@ -126,7 +130,21 @@ fun! MatchCaseTag()
     endtry
 endfun
 nnoremap <silent> <C-]> :call MatchCaseTag()<CR>
-nnoremap <silent> <leader>c :!ctags -R . &<CR>
+
+" Strip trailing whitespace
+function! StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+nnoremap <leader>W :call StripTrailingWhitespaces()<CR>
+"autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Map key to make vim convenient on Colemak (set lmap)
 nmap <leader>C :set langmap=jekn;eknj,JEKN;EKNJ<CR>

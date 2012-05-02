@@ -2,7 +2,6 @@ if !exists("autocommands_loaded")
   let autocommands_loaded = 1
 
 " Dont do it when writing a commit log entry
-autocmd BufReadPost * call SetCursorPosition()
 function! SetCursorPosition()
     if &filetype !~ 'commit\c'
         if line("'\"") > 0 && line("'\"") <= line("$")
@@ -11,20 +10,7 @@ function! SetCursorPosition()
         endif
     end
 endfunction
-
-" Strip trailing whitespace on save
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+autocmd BufReadPost * call SetCursorPosition()
 
 " Set Apache indentation
 autocmd FileType apache setlocal softtabstop=4 tabstop=4 shiftwidth=4 expandtab foldnestmax=1
@@ -49,6 +35,9 @@ autocmd FileType less setlocal softtabstop=4 tabstop=4 shiftwidth=4 expandtab fo
 
 " Set Markdown indentation
 autocmd FileType markdown setlocal softtabstop=4 tabstop=4 shiftwidth=4 expandtab foldnestmax=1
+
+" Set PHP indentation
+autocmd FileType markdown setlocal softtabstop=4 tabstop=4 shiftwidth=4 noexpandtab
 
 " Python smartindent settings
 autocmd FileType python setlocal autoindent cindent smartindent smarttab expandtab softtabstop=4 tabstop=4 shiftwidth=4 shiftround foldnestmax=2 cinwords=if,elif,else,for,while,try,except,finally,def,class,with
