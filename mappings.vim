@@ -65,6 +65,9 @@ nnoremap <leader>f :setlocal langmap=<CR>:CommandTBuffer<CR>
 " Map key to trim trailing whitespace
 nnoremap <leader>z :%s/\s\+$//e
 
+" Map key to yank path of current file
+nnoremap <leader>c :let @" = expand("%")<CR>
+
 " Map key to use Gundo
 nnoremap <F4> :GundoToggle<CR>
 
