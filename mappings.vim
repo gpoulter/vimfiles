@@ -122,6 +122,9 @@ nmap SR <ESC>:source ~/.vim/session.vim<CR>
 " Map key to open URL under cursor in chrome
 nnoremap <leader>w :silent !google-chrome <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
 
+" Map key to open JIRA issue under cursor
+nnoremap <leader>m "ay3w:silent !google-chrome http://jira.mocality.net/browse/<C-R>a<CR><CR>
+
 " Go to defn of tag under the cursor, forcing noignorecase
 function! MatchCaseTag()
     let ignorecase = &ignorecase
