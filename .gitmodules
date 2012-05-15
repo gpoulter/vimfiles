@@ -43,3 +43,6 @@
 [submodule "bundle/SimpylFold"]
 	path = bundle/SimpylFold
 	url = http://github.com/tmhedberg/SimpylFold.git
+[submodule "bundle/vim-bufexplorer"]
+	path = bundle/vim-bufexplorer
+	url = http://github.com/thisivan/vim-bufexplorer.git
