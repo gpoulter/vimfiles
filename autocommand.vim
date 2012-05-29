@@ -1,7 +1,7 @@
 if !exists("autocommands_loaded")
   let autocommands_loaded = 1
 
-" Dont do it when writing a commit log entry
+" Set cursor position, provided this is not a commit log entry
 function! SetCursorPosition()
     if &filetype !~ 'commit\c'
         if line("'\"") > 0 && line("'\"") <= line("$")
@@ -10,6 +10,8 @@ function! SetCursorPosition()
         endif
     end
 endfunction
+
+" Set cursor position on reading a buffer
 autocmd BufReadPost * call SetCursorPosition()
 
 " Set Apache indentation

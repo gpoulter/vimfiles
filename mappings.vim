@@ -73,6 +73,7 @@ nnoremap <F4> :GundoToggle<CR>
 
 " Map key to replace word under cursor
 nnoremap <leader>e :%s/\<<C-r><C-w>\>//gcI<Left><Left><Left><Left>
+
 " Map key to replace yanked text in selection
 vnoremap <leader>e :s/\<<C-r>"\>//gcI<Left><Left><Left><Left>
 
@@ -85,6 +86,8 @@ function! NumberToggle()
   endif
 endfunc
 nnoremap <Leader>n :call NumberToggle()<CR>
+
+" Set relative number whenever focused and in normal mode
 "autocmd FocusLost * :set number
 "autocmd FocusGained * :set relativenumber
 "autocmd InsertEnter * :set number
@@ -149,9 +152,15 @@ function! StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
+
+" Map key to strip trailing whitespaces
 nnoremap <leader>W :call StripTrailingWhitespaces()<CR>
+
+" Auto strip trailing whitespaces on save
 "autocmd BufWritePre * :call StripTrailingWhitespaces()
 
-" Map key to make vim convenient on Colemak (set lmap)
-nmap <leader>C :set langmap=jekn;eknj,JEKN;EKNJ<CR>
-nmap <leader>Q :set langmap=<CR>
+" Map key to make vim more convenient on Colemak layout (set lmap)
+nmap <leader>C :set langmap=jekn;eknj,JEKN;EKNJ<CR>:nnoremap ; ;<CR>:nnoremap ' :<CR>
+
+" Map key to revert Colemak modifications (set lmap)
+nmap <leader>Q :set langmap=<CR>:nnoremap ; :<CR>:nnoremap ' ;<CR>
