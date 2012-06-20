@@ -23,6 +23,9 @@ noremap Q gq
 " Make Y consistent with C and D by yanking to end
 nnoremap Y y$
 
+" Accidents happen - don't allow lowercase in visual
+vmap u <nop>
+
 " Make down/up behave as expected with lines of different length
 inoremap <Down> <C-o>g<Down>
 inoremap <Up> <C-o>g<Up>
@@ -160,7 +163,7 @@ nnoremap <leader>W :call StripTrailingWhitespaces()<CR>
 "autocmd BufWritePre * :call StripTrailingWhitespaces()
 
 " Map key to make vim more convenient on Colemak layout (set lmap)
-nmap <leader>C :set langmap=jekn;eknj,JEKN;EKNJ<CR>:nnoremap ; ;<CR>:nnoremap ' :<CR>
+nmap <leader>C :set langmap=jekn;eknj,JEKN;EKNJ<CR>:nnoremap ; ;<CR>:nnoremap ' :<CR>:vnoremap ' :<CR>
 
 " Map key to revert Colemak modifications (set lmap)
-nmap <leader>Q :set langmap=<CR>:nnoremap ; :<CR>:nnoremap ' ;<CR>
+nmap <leader>Q :set langmap=<CR>:nnoremap ; :<CR>:nnoremap ' ;<CR>:vnoremap ' ;<CR>
